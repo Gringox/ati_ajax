@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>
+		Ruby on Rails: Web development that doesn't hurt:
+	</title>
+
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<script>
+
+$(document).ready(function () {
+	$("h3").bind('click', function(){
+		$(this).parent().find(".content").slideToggle( "slow" );
+	});
+	
+	$("a").bind('click', function(){
+		var domain = window.location.href;
+		domain = domain.substring(0, domain.length - 1) + $(this).html();
+		
+		window.location = domain;
+		
+		return false;
+	});
+});
+
+</script>
+
+</head>
+<body>
+	<div id="container">
+
+		<div id="header">
+			<div id="headerText"><h1><p id="someRubyText">Ruby on Rails: Web development that doesn't hurt</p></h1></div>
+			<div id="imageDiv"><img src="http://rubyonrails.org/images/rails.png" height="42" width="42" /></div>
+		</div>
+		<div id="content">
+
+<h2>API Demostrativa</h2>
+<div class="function">
+	<h3>Listado de Tweets</h3>
+	<div class="content">
+		<label>Url</label>
+		<p>/tweets</p>
+		<p>/tweets.xml</p>
+		<p>/tweets.json</p>
+		<p>/tweets.yaml</p>
+		<label>Metodos/Verbos</label>
+		<ul>
+			<li>GET</li>
+		</ul>
+		<label>Parametros</label>
+		<ul>
+			<li>Obligatorios</li>
+			<ul>
+				<li class="field_none">Ninguno</li>
+			</ul>
+		</ul>
+		<ul>
+			<li>Opcionales</li>
+			<ul>
+				<li class="field_none">page</li>
+					<ul>
+						<li class="field_name"><label>Tipo</label>numero entero mayor a cero</li>
+						<li class="field_name"><label>Representacion</label>Representa cuantos tweets son devueltos, cada pagina consta de 5 tweets</li>
+					</ul>
+			</ul>
+		</ul>
+		<label>Respuesta</label>
+		<ul>
+                        <li>Mensaje</li>
+                        <ul>
+                                <li>Listado de todos los tweets o de todos los tweets filtrados por page</li>
+                                <li><p>Si el parametro page es menor o igual a cero se mostraran todos los tweets, si el parametro excede la cantidad de tweets no se mostrara ninguno (vacio)</p></li>
+                        </ul>
+                </ul>
+		<label>Ejemplo de llamada</label>
+                <ul>
+                        <li>XML</li>
+                        <ul>
+				<li><label>Listar en xml</label><p>/tweets.xml<p></li>
+				<li><label>Listar en xml y mostrar la primera pagina</label><p>/tweets.xml?page=1<p></li>
+                        </ul>
+			<li>JSON</li>
+                        <ul>
+                                <li><label>Listar en JSON</label><p>/tweets.json<p></li>
+				<li><label>Listar en JSON y mostrar la segunda pagina</label><p>/tweets.json?page=2<p></li>
+                        </ul>
+			<li>YAML</li>
+                        <ul>
+                                <li><label>Listar en YAML</label><p>/tweets.yaml<p></li>
+				<li><label>Listar en YAML y mostrar la tercera pagina</label><p>/tweets.yaml?page=3<p></li>
+                        </ul>
+                </ul>
+	</div>
+</div>
+
+<div class="function">
+<h3>Listar un Tweet</h3>
+        <div class="content">
+                <label>Url</label>
+		<p>/tweets/:id</p>
+                <p>/tweets/:id.xml</p>
+                <p>/tweets/:id.json</p>
+                <p>/tweets/:id.yaml</p>
+		<label>Metodos/Verbos</label>
+		<ul>
+                        <li>GET</li>
+                </ul>
+                <label>Parametros</label>
+                <ul>
+                        <li>Obligatorios</li>
+                        <ul>
+                                <li class="field_none">:id</li>
+                                        <ul>
+                                                <li class="field_name"><label>Tipo</label>numero entero</li>
+                                        </ul>
+                        </ul>
+                </ul>
+                <label>Respuesta</label>
+                <ul>
+                        <li>Mensaje</li>
+                        <ul>
+                                <li><label>Si el tweet existe</label>Tweet</li>
+				<li><label>Si el tweet no existe</label>ERROR</li>
+                        </ul>
+                </ul>
+                <label>Ejemplo de llamada</label>
+                <ul>
+                        <li>XML</li>
+                        <ul>
+                                <li><label>Listar un tweet, obtener respuesta en xml</label><p>/tweets/1.xml<p></li>
+                        </ul>
+                        <li>JSON</li>
+                        <ul>
+                                <li><label>Listar un tweet, obtener respuesta en json</label><p>/tweets/2.json<p></li>
+                        </ul>
+                        <li>YAML</li>
+                        <ul>
+                                <li><label>Listar un tweet, obtener respuesta en yaml</label><p>/tweets/3.yaml<p></li>
+                        </ul>
+                </ul>
+        </div>
+</div>
+
+<div class="function">
+<h3>Agregar un Tweet</h3>
+        <div class="content">
+                <label>Url</label>
+		<p>/tweets</p>
+                <p>/tweets.xml</p>
+                <p>/tweets.json</p>
+                <p>/tweets.yaml</p>
+		<label>Metodos/Verbos</label>
+		<ul>
+                        <li>POST</li>
+                </ul>
+                <label>Parametros</label>
+                <ul>
+                        <li>Obligatorios</li>
+                        <ul>
+                                <li class="field_none">tweet[username]</li>
+                                        <ul>
+                                                <li class="field_name"><label>Tipo</label> string</li>
+                                        </ul>
+				<li class="field_none">tweet[content]</li>
+                                        <ul>
+                                                <li class="field_name"><label>Tipo</label> string</li>
+                                        </ul>
+                        </ul>
+                </ul>
+                <label>Respuesta</label>
+                <ul>
+                        <li>Mensaje</li>
+                        <ul>
+                                <li><label>OK</label>tweet agregado</li>
+				<li><label>ERROR</label>tweet no agregado</li>
+                        </ul>
+                </ul>
+                <label>Ejemplo de llamada</label>
+                <ul>
+                        <li>XML</li>
+                        <ul>
+                                <li><label>Agregar tweet, obtener respuesta en xml</label><p>/tweets.xml?tweet[username]=Pedro&tweet[content]=Ola k ase<p></li>
+                        </ul>
+                        <li>JSON</li>
+                        <ul>
+                                <li><label>Agregar tweet, obtener respuesta en json</label><p>/tweets.json?tweet[username]=Juan&tweet[content]=Ola k ase<p></li>
+                        </ul>
+                        <li>YAML</li>
+                        <ul>
+                                <li><label>Agregar tweet, obtener respuesta en yaml</label><p>/tweets.yaml?tweet[username]=Antonio&tweet[content]=Ola k ase<p></li>
+                        </ul>
+                </ul>
+        </div>
+</div>
+
+<div class="function">
+<h3>Actualizar un Tweet</h3>
+        <div class="content">
+                <label>Url</label>
+		<p>/tweets/:id</p>
+                <p>/tweets/:id.xml</p>
+                <p>/tweets/:id.json</p>
+                <p>/tweets/:id.yaml</p>
+		<label>Metodos/Verbos</label>
+		<ul>
+                        <li>PATCH</li>
+			<li>PUT</li>
+                </ul>
+                <label>Parametros</label>
+                <ul>
+			<li>Obligatorios</li>
+			<ul>
+				<li class="field_none">:id</li>
+                                        <ul>
+                                                <li class="field_name"><label>Tipo</label>numero entero</li>
+                                        </ul>
+			</ul>
+		</ul>
+		<ul>
+			<li>Opcionales (campos a actualizar)</li>
+			<ul>
+				<li class="field_none">tweet[username]</li>
+					<ul>
+						<li class="field_name"><label>Tipo</label> string</li>
+					</ul>
+				<li class="field_none">tweet[content]</li>
+					<ul>
+						<li class="field_name"><label>Tipo</label> string</li>
+					</ul>
+			</ul>
+		</ul>
+                <label>Respuesta</label>
+                <ul>
+                        <li>Mensaje</li>
+                        <ul>
+                                <li><label>OK</label>tweet actualizado</li>
+				<li><label>ERROR</label>tweet no actualizado</li>
+                        </ul>
+                </ul>
+                <label>Ejemplo de llamada</label>
+                <ul>
+                        <li>XML</li>
+                        <ul>
+                                <li><label>Actualizar tweet, obtener respuesta en xml</label><p>/tweets/1.xml?tweet[username]=Pedro&tweet[content]=Ola k ase<p></li>
+                        </ul>
+                        <li>JSON</li>
+                        <ul>
+                                <li><label>Actualizar tweet, obtener respuesta en json</label><p>/tweets/2.json?tweet[username]=Pedro<p></li>
+                        </ul>
+                        <li>YAML</li>
+                        <ul>
+                                <li><label>Actualizar tweet, obtener respuesta en yaml</label><p>/tweets/3.yaml?tweet[content]=Ola k ase<p></li>
+                        </ul>
+                </ul>
+        </div>
+</div>
+
+<div class="function">
+<h3>Eliminar un Tweet</h3>
+        <div class="content">
+                <label>Url</label>
+		<p>/tweets/:id</p>
+                <p>/tweets/:id.xml</p>
+                <p>/tweets/:id.json</p>
+                <p>/tweets/:id.yaml</p>
+		<label>Metodos/Verbos</label>
+		<ul>
+                        <li>DELETE</li>
+                </ul>
+                <label>Parametros</label>
+                <ul>
+			<li>Obligatorios</li>
+			<ul>
+				<li class="field_none">:id</li>
+                                        <ul>
+                                                <li class="field_name"><label>Tipo</label>numero entero</li>
+                                        </ul>
+			</ul>
+		</ul>
+                <label>Respuesta</label>
+                <ul>
+                        <li>Mensaje</li>
+                        <ul>
+                                <li><label>OK</label>tweet eliminado</li>
+				<li><label>ERROR</label>tweet no eliminado</li>
+                        </ul>
+                </ul>
+                <label>Ejemplo de llamada</label>
+                <ul>
+                        <li>XML</li>
+                        <ul>
+                                <li><label>Eliminar tweet, obtener respuesta en xml</label><p>/tweets/1.xml<p></li>
+                        </ul>
+                        <li>JSON</li>
+                        <ul>
+                                <li><label>Eliminar tweet, obtener respuesta en json</label><p>/tweets/2.json<p></li>
+                        </ul>
+                        <li>YAML</li>
+                        <ul>
+                                <li><label>Eliminar tweet, obtener respuesta en yaml</label><p>/tweets/3.yaml<p></li>
+                        </ul>
+                </ul>
+        </div>
+</div>
+</div>
+
+<div>
+	<p><strong>--NOTAS:</strong></p>
+	<ul>
+		<li><p>Los IDs son autoincrementales</p></li>
+		<li><p>Los tweets son mostrados del mas antiguo al mas reciente (creado o actualizado)</p></li>
+		<li><p>Si tiene conocimiento de alguna otra herramienta para verificar el funcionamiento del servicio la puede usar, por ejemplo: el comando curl de unix</p></li>
+		<li><p>Recuerde desactivar el Same Origin Policy</p></li>
+		<li><p>En la documentacion de JQuery se menciona que no todos los browsers soportan metodos como PUT/DELETE, ojo con eso</p></li>
+	</ul>
+
+</body>
+</html>
